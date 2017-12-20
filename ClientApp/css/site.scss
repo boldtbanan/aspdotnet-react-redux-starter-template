@@ -12,9 +12,42 @@
   max-width: none;
 }
 
-.main-nav li .fa {
-  margin-right: 10px;
+.main-nav {
+  li .fa {
+    margin-right: 10px;
+  }
+
+  .button.toggle-menu .fa {
+    margin-right: 0;
+  }
+
+  .top-bar-left {
+    max-width: 70%;
+
+    a {
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+  }
+
+  .top-bar-right {
+    max-width: 30%;
+  }
+
+  .button {
+    border: 1px solid #333;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
 }
+
+
 
 /* Highlighting rules for nav menu items */
 .main-nav li a.active,
@@ -50,6 +83,9 @@
     line-height: 20px;
   }
 
+  .top-bar-right, .top-bar-right ul { background-color: transparent; }
+
+  .top-bar-right .menu { float: right; }
 
   a {
     color: #9d9d9d;
@@ -63,6 +99,17 @@
   body {
     padding-top: 50px;
   }
+
+  .main-nav {
+    .collapsible-menu {
+      height: 0;
+      overflow: hidden;
+    }
+
+    &.expanded .collapsible-menu {
+      height: auto;
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -70,43 +117,49 @@
   .main-nav {
     height: 100%;
     width: calc(25% - 20px);
-  }
 
-  .main-nav .navbar {
-    border-radius: 0px;
-    border-width: 0px;
-    height: 100%;
-  }
+    .navbar {
+      border-radius: 0px;
+      border-width: 0px;
+      height: 100%;
 
-  .main-nav .navbar-header {
-    float: none;
-  }
+      ul {
+        float: none;
+      }
 
-  .main-nav .navbar-collapse {
-    border-top: 1px solid #444;
-    padding: 0px;
-  }
+      li {
+        float: none;
+        font-size: 15px;
+        margin: 6px;
 
-  .main-nav .navbar ul {
-    float: none;
-  }
+        a {
+          padding: 10px 16px;
+          border-radius: 4px;
+        }
+      }
 
-  .main-nav .navbar li {
-    float: none;
-    font-size: 15px;
-    margin: 6px;
-  }
+      a {
+        /* If a menu item's text is too long, truncate it */
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
 
-  .main-nav .navbar li a {
-    padding: 10px 16px;
-    border-radius: 4px;
-  }
+    .navbar-header {
+      float: none;
+    }
 
-  .main-nav .navbar a {
-    /* If a menu item's text is too long, truncate it */
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    .navbar-collapse {
+      border-top: 1px solid #444;
+      padding: 0px;
+    }
+
+    .top-bar-right {
+      display: none;
+    }
   }
 }
+
+

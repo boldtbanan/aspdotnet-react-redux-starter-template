@@ -1,13 +1,17 @@
 import * as React from 'react';
-import { NavMenu } from './NavMenu';
+import { connect } from 'react-redux';
+import NavMenu from './NavMenu';
+import * as Nav from '../store/Nav';
 
-export class Layout extends React.Component<{}, {}> {
+class LayoutComponent extends React.Component<any, any> {
   public render() {
+    const { navState, toggleNav } = this.props;
+
     return (
       <div className="application">
         <div className="row">
           <div className="small-3 columns">
-            <NavMenu />
+            <NavMenu expanded={navState.expanded} toggleNav={toggleNav} />
           </div>
           <div className="small-9 columns">
             {this.props.children}
@@ -17,3 +21,10 @@ export class Layout extends React.Component<{}, {}> {
     );
   }
 }
+
+export const Layout = connect((state) => {
+    return {
+      navState: state.nav
+    };
+  },
+  { toggleNav: Nav.actionCreators.toggleNav })(LayoutComponent);
