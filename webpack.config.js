@@ -18,7 +18,9 @@ module.exports = (env) => {
     module: {
       rules: [
         { test: /\.tsx?$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
-        { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
+        { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
+        { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+        { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
       ]
     },
     plugins: [new CheckerPlugin()]
@@ -39,12 +41,18 @@ module.exports = (env) => {
               {
                 loader: 'sass-loader',
                 query: {
-                  includePaths: [path.resolve(__dirname, 'node_modules/foundation-sites/scss')]
+                  includePaths: [
+                    //                    path.resolve(__dirname, 'node_modules/foundation-sites'),
+                    path.resolve(__dirname, 'node_modules'),
+                    path.resolve(__dirname, 'node_modules/font-awesome/scss'),
+                    path.resolve(__dirname, 'node_modules/font-awesome')
+                    //path.resolve(__dirname, 'node_modules/foundation-sites/scss')
+                  ]
                 }
               }
             ]
           })
-          
+
         }
       ]
     },

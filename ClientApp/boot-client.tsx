@@ -2,6 +2,7 @@
 import './css/site.scss'
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import 'font-awesome-webpack';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';

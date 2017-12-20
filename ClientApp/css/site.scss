@@ -1,6 +1,18 @@
-﻿@import 'settings';
+﻿@import '~foundation-sites/scss/util/util';
+@import 'settings';
+@import '~foundation-sites/scss/foundation';
 
-.main-nav li .glyphicon {
+@include foundation-everything;
+
+// import these explicitly because they are deprecated
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
+.application > .row {
+  max-width: none;
+}
+
+.main-nav li .fa {
   margin-right: 10px;
 }
 
@@ -12,6 +24,15 @@
   color: white;
 }
 
+.navbar-inverse {
+  background-color: #222;
+  border-color: #080808;
+
+  .navbar-nav > li > a {
+    color: #9d9d9d;
+  }
+}
+
 /* Keep the nav menu independent of scrolling and on top of other items */
 .main-nav {
   position: fixed;
@@ -19,7 +40,23 @@
   left: 0;
   right: 0;
   z-index: 1;
+
+  .top-bar {
+    background-color: transparent;
+    border-bottom: 1px solid #444;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+
+  a {
+    color: #9d9d9d;
+  }
 }
+
+
 
 @media (max-width: 767px) {
   /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
