@@ -1,17 +1,17 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import * as classNames from 'classnames';
 import * as NavStore from '../store/Nav';
+import { ApplicationState } from '../store/index';
+import { RouteProps } from 'react-router';
 
+class NavMenuComponent extends React.Component<any, {}> {
 
-type NavProps =
-  NavStore.NavState
-  & typeof NavStore.actionCreators;
-
-export default class NavMenu extends React.Component<NavProps, {}> {
   public render() {
-    const { expanded, toggleNav } = this.props;
-
+    const { nav, toggleNav } = this.props;
+    const { expanded } = nav;
+    
     return (
       <div className={classNames({'main-nav': true, expanded})}>
         <div className="navbar navbar-inverse">
@@ -39,7 +39,7 @@ export default class NavMenu extends React.Component<NavProps, {}> {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/counter" activeClassName="active">
+                <NavLink to={'/counter'} activeClassName='active'>
                   <i className="fa fa-fw fa-lg fa-graduation-cap"></i> Counter
                 </NavLink>
               </li>
@@ -55,3 +55,15 @@ export default class NavMenu extends React.Component<NavProps, {}> {
     );
   }
 }
+
+export const NavMenu = connect(
+  (state) => {
+    return {
+      nav: state.nav,
+      routing: state.routing
+    };
+  }, // Selects which state properties are merged into the component's props
+  NavStore.actionCreators                 // Selects which action creators are merged into the component's props
+)(NavMenuComponent);
+
+export default NavMenu;

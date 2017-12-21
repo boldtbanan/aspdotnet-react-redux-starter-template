@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 import configureStore from './configureStore';
-import { ApplicationState }  from './store';
+import { ApplicationState } from './store';
+//import { createRoutes } from './routes/index';
 import * as RoutesModule from './routes';
 let routes = RoutesModule.routes;
 
@@ -36,9 +37,9 @@ function renderApp() {
 renderApp();
 
 // Allow Hot Module Replacement
-if (module.hot) {
-    module.hot.accept('./routes', () => {
-        routes = require<typeof RoutesModule>('./routes').routes;
-        renderApp();
-    });
-}
+//if (module.hot) {
+//    module.hot.accept('./routes', () => {
+//        routes = require<typeof RoutesModule>('./routes').routes;
+//        renderApp();
+//    });
+//}
